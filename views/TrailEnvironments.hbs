@@ -1,0 +1,88 @@
+<h1>Trail Environments</h1> 
+<p>This table shows what environments will be encountered on each trail.</p>
+
+<table id="trailEnvironment-table">
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.trailEnvironmentID}}>
+            <td>{{this.trailEnvironmentID}}</td>
+            <td>{{this.trail}}</td>
+            <td>{{this.environment}}</td>
+            <td><button onclick="deleteTrailEnvironment({{this.trailEnvironmentID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_trailEnvironment.js"></script>
+
+<h2>Adding a Trail Environment</h2>
+<p>To add a new trail environment, please select from the dropdowns below and click `Submit`!</p>
+<form id="add-trailEnvironment-form" method="POST" action="/add-trailEnvironment-form">
+    <label for="input-trail">Trail: </label>
+    <select name="input-trail" id="input-trail-ajax">
+        <option value="">Select a Trail</option>
+        {{#each trails}}
+        <option value="{{this.trailID}}">{{this.trailName}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="input-environment">Environment </label>
+    <select name="input-environment" id="input-environment-ajax">
+        <option value="">Select an Environment</option>
+        {{#each environments}}
+        <option value="{{this.environmentID}}">{{this.environmentName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+</form>
+
+<h2>Update A Trail Environment (Must refresh after submitting to see updates!)</h2>
+<p>To update a specific Trail Environment, select the trailEnvironmentID from the drop-down menu on the left and then select the Trail and the Environment.</p>
+<form id="update-trailEnvironment-form-ajax">
+
+    <label for="input-trailEnvironmentID">trailEnvironmentID: </label>
+    <select name="input-trailEnvironmentID" id="input-trailEnvironmentID-update">
+        <option value="">Select a trailEnvironmentID</option>
+        {{#each data}}
+        <option value="{{this.trailEnvironmentID}}">{{this.trailEnvironmentID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-trail">Trail: </label>
+    <select name="input-trail" id="input-trail-update">
+        <option value="">Select a Trail</option>
+        {{#each trails}}
+        <option value="{{this.trailID}}">{{this.trailName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-environment">Environment: </label>
+    <select name="input-environment" id="input-environment-update">
+        <option value="">Select an Environment</option>
+        {{#each environments}}
+        <option value="{{this.environmentID}}">{{this.environmentName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_trailEnvironment.js"></script>
