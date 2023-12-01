@@ -1,0 +1,97 @@
+{{!-- 
+Citation for the following: READ table, CREATE form, UPDATE form.
+Date: 11/30/2023
+Adapted from GitHub Node.js starter app walkthrough guide
+Changed the table to display the attributes from the ParkSystems table. Changed the CREATE form to input the appropriate attributes for the ParkSystems entity.
+Changed the UPDATE form to input the appropriate attributes for the ParkSystems entity.
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+            https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+            https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+--}}
+
+<h1>Park Systems</h1> 
+<p>This table shows the park systems in which trails are located</p>
+
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.parkID}}</td>
+            <td>{{this.parkName}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.parkPass}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- /views/index.hbs -->
+<h2>Add a Park System</h2>
+<p>To add a new park system, please enter their information below nad click `Submit`!</p>
+<form id="add-parkSystem-form" method="POST" action="/add-parkSystem-form">
+
+    <label for="input-parkName">Park Name: </label>
+    <input type="text" name="input-parkName" id="input-parkName">
+    
+    <label for="input-location">Location: </label>
+    <select name="input-location" id="input-location">
+        <option value="NE">NE</option>
+        <option value="NW">NW</option>
+        <option value="SE">SE</option>
+        <option value="SW">SW</option>
+    </select>
+
+    <label for="input-parkPass">Park Pass: </label>
+    <select name="input-parkPass" id="input-parkPass-ajax">
+        <option value = "">No Pass Required</option>
+        {{#each parkPasses}}
+        <option value="{{this.parkPassID}}">{{this.parkPassName}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+
+<h2>Update a Park System (Must refresh after submitting to see updates!)</h2>
+<p>To update a specific park system, select the name from the drop-down menu on the left and the park pass on the right.</p>
+<form id="update-parkSystem-form-ajax">
+
+    <label for="input-parkName">Park Name: </label>
+    <select name="input-parkName" id="input-parkName-update">
+        <option value="">Select a Park</option>
+        {{#each data}}
+        <option value="{{this.parkID}}">{{this.parkName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-parkPass">Park Pass: </label>
+    <select name="input-parkPass" id="input-parkPass-update">
+        <option value="">No Pass Required</option>
+        {{#each parkPasses}}
+        <option value="{{this.parkPassID}}">{{this.parkPassName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_parkSystem.js"></script>
