@@ -10,7 +10,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
 --}}
 
 <h1>Park Systems</h1> 
-<p>This table holds information about park systems in which trails may be located.</p>
+<p>This category table holds data about the park systems where trails are located</p>
 
 {{!-- Create a table --}}
 <table>
@@ -45,8 +45,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
 </table>
 
 <!-- /views/index.hbs -->
-<h2>Add a Park System</h2>
-<p>To add a new park system, enter the information below and click "Submit Query". NOTE: If no park pass is required for entry, select NULL from the Park Pass dropdown.</p>
+<h2>Add Park System</h2>
+<p>To add a new park system, please enter data in the fields below and click "Submit"</p>
+<p>NOTE: If no park pass is required for entry, please select NULL from the Park Pass dropdown menu</p>
 <form id="add-parkSystem-form" method="POST" action="/add-parkSystem-form">
 
     <label for="input-parkName">Park Name: </label>
@@ -71,13 +72,14 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
     <input type="submit">
 </form>
 
-<h2>Update a Park System</h2>
-<p>To update a park system, enter the updated information below and click "Submit Query". NOTE: If no park pass is required for entry, select NULL from the Park Pass dropdown.</p>
+<h2>Update Park System</h2>
+<p>To update a park system, please enter updated data in the fields below and click "Submit"</p>
+<p>NOTE: If no park pass is required for entry, please select NULL from the Park Pass dropdown menu</p>
 <form id="update-parkSystem-form-ajax">
 
     <label for="input-parkName">Park Name: </label>
     <select name="input-parkName" id="input-parkName-update">
-        <option value="">Select a Park</option>
+        <option value="">Select Park</option>
         {{#each data}}
         <option value="{{this.parkID}}">{{this.parkName}}</option>
         {{/each}}
