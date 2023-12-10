@@ -84,3 +84,13 @@ h2 {
     background-color: #555;
     color: #fff;
 }
+
+.CRUD-operations {
+    margin: 0 auto; /* This centers the container */
+    max-width: 600px; /* Adjust the maximum width as needed */
+    text-align: left; /* Align the content inside the container to the left */
+  }
+
+  .about {
+    text-align: left;
+  }
