@@ -1,5 +1,5 @@
 <h1>Trails</h1> 
-<p>This table holds information about each trail in the database.</p>
+<p>This table holds data about each trail in the database</p>
 
 {{!-- Create a table --}}
 <table id="trail-table">
@@ -40,8 +40,8 @@
 </table>
 <script src="./js/delete_trail.js"></script>
 
-<h2>Add a Trail</h2>
-<p>To add a new trail, input the information below and click "Submit Query".</p>
+<h2>Add Trail</h2>
+<p>To add a new trail, please enter data for the fields below and click "Submit"</p>
 <form id="add-trail-form" method="POST" action="/add-trail-form">
 
     <label for="input-name">Trail Name: </label>
@@ -50,7 +50,7 @@
 
     <label for="input-park">Park System: </label>
     <select name="input-park" id="input-park-ajax">
-        <option value="">Select a Park</option>
+        <option value="">Select Park</option>
         {{#each parkSystems}}
         <option value="{{this.parkID}}">{{this.parkName}}</option>
         {{/each}}
@@ -61,16 +61,16 @@
 
     <label for="input-difficulty">Difficulty: </label>
     <select name="input-difficulty" id="input-difficulty-ajax">
-        <option value="">Select a Difficulty</option>
+        <option value="">Select Difficulty</option>
         {{#each difficulties}}
         <option value="{{this.difficultyID}}">{{this.difficultyName}}</option>
         {{/each}}
     </select>
 
-    <label for="input-length">Length in Miles: </label>
+    <label for="input-length">Length (Miles): </label>
     <input type="number" step="0.01" name="input-length" id="input-length">
 
-    <label for="input-avgTime">Average Time to Complete in Hours: </label>
+    <label for="input-avgTime">Average Time To Complete (Hours): </label>
     <input type="number" step="0.01" name="input-avgTime" id="input-avgTime">
 
     <label for="input-avalancheRisk">Avalanche Risk: </label>
@@ -79,13 +79,13 @@
     <input type="submit">
 </form>
 
-<h2>Update A Trail</h2>
-<p>To update the data for a trail, select the trail from the drop-down menu, enter the updated information, and click "Submit Query".</p>
+<h2>Update Trail</h2>
+<p>To update data for a trail, select the trail from the drop-down menu, enter the updated information, and click "Submit"</p>
 <form id="update-trail-form-ajax">
 
     <label for="input-trail-update">Trail: </label>
     <select name="input-trail-update" id="input-trail-update">
-        <option value="">Select a Trail</option>
+        <option value="">Select Trail</option>
         {{#each data}}
         <option value="{{this.trailID}}">{{this.trailName}}</option>
         {{/each}}
@@ -93,7 +93,7 @@
 
     <label for="input-park-update">Park: </label>
     <select name="input-park-update" id="input-park-update">
-        <option value="">Select a Park</option>
+        <option value="">Select Park</option>
         {{#each parkSystems}}
         <option value="{{this.parkID}}">{{this.parkName}}</option>
         {{/each}}
