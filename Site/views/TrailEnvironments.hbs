@@ -10,8 +10,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
             https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
 --}}
 
-<h1>Trail Environments</h1> 
-<p>This table holds information regarding which environments can be encountered on each trail.</p>
+<h1>TrailEnvironments</h1> 
+<p>This intersection table holds data about which environments can be encountered on each trail</p>
 
 <table id="trailEnvironment-table">
     {{!-- Header section --}}
@@ -25,7 +25,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
                 {{@key}}
             </th>
             {{/each}}
-            <th>delete</th>
+            <th></th>   {{!-- removed "Delete" to make empty cell --}}
         </tr>
     </thead>
 
@@ -45,12 +45,12 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
 </table>
 <script src="./js/delete_trailEnvironment.js"></script>
 
-<h2>Add a Trail Environment</h2>
-<p>To add a new trail environment, select from the dropdown menus and click "Submit Query".</p>
+<h2>Add TrailEnvironment</h2>
+<p>To add a new TrailEnvironment, please select data from the dropdown menus and click "Submit"</p>
 <form id="add-trailEnvironment-form" method="POST" action="/add-trailEnvironment-form">
     <label for="input-trail">Trail: </label>
     <select name="input-trail" id="input-trail-ajax">
-        <option value="">Select a Trail</option>
+        <option value="">Select Trail</option>
         {{#each trails}}
         <option value="{{this.trailID}}">{{this.trailName}}</option>
         {{/each}}
@@ -58,7 +58,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
     
     <label for="input-environment">Environment </label>
     <select name="input-environment" id="input-environment-ajax">
-        <option value="">Select an Environment</option>
+        <option value="">Select Environment</option>
         {{#each environments}}
         <option value="{{this.environmentID}}">{{this.environmentName}}</option>
         {{/each}}
@@ -66,13 +66,13 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
     <input type="submit">
 </form>
 
-<h2>Update A Trail Environment</h2>
-<p>To update a Trail Environment, select from the dropdown menus and click "Submit Query".</p>
+<h2>Update TrailEnvironment</h2>
+<p>To update a TrailEnvironment, please select data from the dropdown menus and click "Submit"</p>
 <form id="update-trailEnvironment-form-ajax">
 
-    <label for="input-trailEnvironmentID">trailEnvironmentID: </label>
+    <label for="input-trailEnvironmentID">Trail Environment ID: </label>
     <select name="input-trailEnvironmentID" id="input-trailEnvironmentID-update">
-        <option value="">Select a trailEnvironmentID</option>
+        <option value="">Select Trail Environment ID</option>
         {{#each data}}
         <option value="{{this.trailEnvironmentID}}">{{this.trailEnvironmentID}}</option>
         {{/each}}
@@ -80,7 +80,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
 
     <label for="input-trail">Trail: </label>
     <select name="input-trail" id="input-trail-update">
-        <option value="">Select a Trail</option>
+        <option value="">Select Trail</option>
         {{#each trails}}
         <option value="{{this.trailID}}">{{this.trailName}}</option>
         {{/each}}
@@ -88,7 +88,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/St
 
     <label for="input-environment">Environment: </label>
     <select name="input-environment" id="input-environment-update">
-        <option value="">Select an Environment</option>
+        <option value="">Select Environment</option>
         {{#each environments}}
         <option value="{{this.environmentID}}">{{this.environmentName}}</option>
         {{/each}}
