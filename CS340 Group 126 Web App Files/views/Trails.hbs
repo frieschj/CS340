@@ -1,0 +1,140 @@
+{{!-- 
+Citation for the following: READ table w/ DELETE buttons, CREATE form, UPDATE form.
+Date: 11/30/2023
+Adapted from GitHub Node.js starter app walkthrough guide
+Changed the table to display the attributes from the Trails table. Changed the CREATE form to input the appropriate attributes for the Trails entity.
+Changed the UPDATE form to input the appropriate attributes for the Trails entity.
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+            https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+            https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+            https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+--}}
+
+<h1>Trails</h1> 
+<p>This category table holds data about each trail in the database</p>
+
+{{!-- Create a table --}}
+<table id="trail-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>   {{!-- removed "Delete" to make empty cell --}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.trailID}}>
+            <td>{{this.trailID}}</td>
+            <td>{{this.trailName}}</td>
+            <td>{{this.park}}</td>
+            <td>{{this.elevation}}</td>
+            <td>{{this.difficulty}}</td>
+            <td>{{this.length}}</td>
+            <td>{{this.avgTime}}</td>
+            <td>{{this.avalancheRisk}}</td>
+            <td><button onclick="deleteTrail({{this.trailID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_trail.js"></script>
+
+<h2>Add Trail</h2>
+<p>To add a new trail, please enter data for the fields below and click "Submit"</p>
+<form id="add-trail-form" method="POST" action="/add-trail-form">
+
+    <label for="input-name">Trail Name: </label>
+    <input type="text" name="input-name" id="input-name">
+
+
+    <label for="input-park">Park System: </label>
+    <select name="input-park" id="input-park-ajax">
+        <option value="">Select Park</option>
+        {{#each parkSystems}}
+        <option value="{{this.parkID}}">{{this.parkName}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="input-elevation">Elevation: </label>
+    <input type="number" name="input-elevation" id="input-elevation">
+
+    <label for="input-difficulty">Difficulty: </label>
+    <select name="input-difficulty" id="input-difficulty-ajax">
+        <option value="">Select Difficulty</option>
+        {{#each difficulties}}
+        <option value="{{this.difficultyID}}">{{this.difficultyName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-length">Length (Miles): </label>
+    <input type="number" step="0.01" name="input-length" id="input-length">
+
+    <label for="input-avgTime">Average Time To Complete (Hours): </label>
+    <input type="number" step="0.01" name="input-avgTime" id="input-avgTime">
+
+    <label for="input-avalancheRisk">Avalanche Risk: </label>
+    <input type="text" name="input-avalancheRisk" id="input-avalancheRisk">
+
+    <input type="submit">
+</form>
+
+<h2>Update Trail</h2>
+<p>To update a trail, please select the trail from the dropdown menu, enter the updated information, and click "Submit"</p>
+<form id="update-trail-form-ajax">
+
+    <label for="input-trailID-update">Trail: </label>
+    <select name="input-trailID-update" id="input-trailID-update">
+        <option value="">Select Trail</option>
+        {{#each data}}
+        <option value="{{this.trailID}}">{{this.trailName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-trail-update">Trail Name: </label>
+    <input type="text" name="input-trail-update" id="input-trail-update">
+
+    <label for="input-park-update">Park: </label>
+    <select name="input-park-update" id="input-park-update">
+        <option value="">Select Park</option>
+        {{#each parkSystems}}
+        <option value="{{this.parkID}}">{{this.parkName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-elevation-update">Elevation: </label>
+    <input type="number" name="input-elevation-update" id="input-elevation-update"> 
+
+    <label for="input-difficulty-update">Difficulty: </label>
+    <select name="input-difficulty-update" id="input-difficulty-update">
+        <option value="">Select a Difficulty</option>
+        {{#each difficulties}}
+        <option value="{{this.difficultyID}}">{{this.difficultyName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-length-update">Length: </label>
+    <input type="number" step="0.01" max="100" name="input-length-update" id="input-length-update">
+
+    <label for="input-avgTime-update">Average Time to Complete in Hours: </label>
+    <input type="number" step="0.01" max="100" name="input-avgTime-update" id="input-avgTime-update">
+
+    <label for="input-avalancheRisk-update">Avalanche Risk: </label>
+    <input type="text" name="input-avalancheRisk-update" id="input-avalancheRisk-update">
+
+    <input type="submit">
+</form>
+
+<script src="./js/update_trail.js"></script>
