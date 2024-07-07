@@ -86,9 +86,9 @@ h2 {
 }
 
 .CRUD-operations {
-    margin: 0 auto; /* This centers the container */
-    max-width: 600px; /* Adjust the maximum width as needed */
-    text-align: left; /* Align the content inside the container to the left */
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: left;
   }
 
   .about {

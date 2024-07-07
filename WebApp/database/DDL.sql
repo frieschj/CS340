@@ -79,8 +79,6 @@ VALUES
     ("Northwest Forest Pass"),
     ("Discover Pass");
 
-
-
 INSERT INTO Environments
     (environmentName)
 VALUES
@@ -91,9 +89,6 @@ VALUES
     ("Meadows"),
     ("Mountains");
 
-
-
-
 INSERT INTO TrailDifficulties
     (difficultyName)
 VALUES
@@ -101,9 +96,6 @@ VALUES
     ("Moderate"),
     ("Moderate/Hard"),
     ("Hard");
-
-
-
 
 INSERT INTO ParkSystems
     (parkName,
@@ -114,9 +106,6 @@ VALUES
     ("Olympic National Park", "NW", (SELECT parkPassID FROM ParkPasses WHERE parkPassName = "National Park Pass")),
     ("Wallace Falls State Park", "NW", (SELECT parkPassID FROM ParkPasses WHERE parkPassName = "Discover Pass")),
     ("Mount Baker Snoqualmie National Forest", "NW", (SELECT parkPassID FROM ParkPasses WHERE parkPassName = "Northwest Forest Pass"));
-
-
-
 
 INSERT INTO Trails
     (trailName,
@@ -131,9 +120,6 @@ VALUES
     ("Skyline Trail Loop", (SELECT parkID FROM ParkSystems WHERE parkName = "Mount Rainier National Park"), 6800, (SELECT difficultyID FROM TrailDifficulties WHERE difficultyName = "Moderate"), 5.7, 3.5, "High"),
     ("Woody Trail", (SELECT parkID FROM ParkSystems WHERE parkName = "Wallace Falls State Park"), 1500, (SELECT difficultyID FROM TrailDifficulties WHERE difficultyName = "Moderate"), 4.9, 3, "Medium"),
     ("Lake 22 Trail", (SELECT parkID FROM ParkSystems WHERE parkName = "Mount Baker Snoqualmie National Forest"), 2400, (SELECT difficultyID FROM TrailDifficulties WHERE difficultyName = "Moderate"), 5.9, 3.25, "Low");
-
-
-
 
 INSERT INTO TrailEnvironments
     (trailID,
@@ -154,7 +140,6 @@ VALUES
     ((SELECT trailID FROM Trails WHERE trailName = "Lake 22 Trail"), (SELECT environmentID FROM Environments WHERE environmentName = "Waterfalls")),
     ((SELECT trailID FROM Trails WHERE trailName = "Lake 22 Trail"), (SELECT environmentID FROM Environments WHERE environmentName = "Meadows")),
     ((SELECT trailID FROM Trails WHERE trailName = "Lake 22 Trail"), (SELECT environmentID FROM Environments WHERE environmentName = "Mountains"));
-
 
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
